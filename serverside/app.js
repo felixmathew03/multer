@@ -1,23 +1,18 @@
-const express=require("express");
-const multer=require("multer");
-const mongoose=require("mongoose");
+import express from "express"
+import connection  from "./connection.js";
+import env from "dotenv"
+import router from "./router.js";
+env.config()
 
-const app=express();
-const storage=multer.diskStorage({
-    destination:"./uploads",
-    filename:function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        cb(null, file.originalname + '-' + uniqueSuffix)
-      }
-})
-const upload =multer({storage});
-const port=3000;
-app.post('/api/upload', upload.single('file'), function (req, res) {
-    console.log(req.file);
-    res.send("Successfully uploaded....!!")
-  })
-
-  app.listen(port,()=>{
-    console.log(`http://localhost:3000/api/upload`);
-    
+  const app=express();
+  app.use(express.static("../clientside"))
+  app.use(express.json({limit:'50Mb'}))
+  app.use("/api",router)
+  
+  connection().then(()=>{
+      app.listen(process.env.PORT,()=>{
+          console.log(`server started at http://localhost:${process.env.PORT}`);
+      })
+  }).catch((error)=>{
+      console.log(error);
   })
