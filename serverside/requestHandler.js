@@ -17,3 +17,12 @@ export async function addUser(req, res) {
         res.status(403).send({ msg: "user not added" });
     }
 }
+
+export async function getUsers(req,res) {
+    try {
+        const users= await userSchema.find();
+        return res.status(200).send(users)
+    } catch (error) {
+        return res.status(404).send({msg:error})
+    }   
+}
