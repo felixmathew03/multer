@@ -14,10 +14,12 @@ const upload =multer({storage});
 const router=Router();
 
 router.route("/upload").post(upload.single('file'),user.addUser);
-router.route("/getusers").get(user.getUsers)
+router.route("/getusers").get(user.getUsers);
 router.route("/image/:filename").get((req,res)=>{
     const {filename}=req.params;
     return res.sendFile(path.resolve(`./uploads/${filename}`))
-})
+});
+router.route("/deleteuser/:_id").delete(user.deleteUser);
+router.route("/getuser/:_id").get(user.getUser)
 
 export default router;
