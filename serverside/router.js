@@ -21,5 +21,6 @@ router.route("/image/:filename").get((req,res)=>{
 });
 router.route("/deleteuser/:_id").delete(user.deleteUser);
 router.route("/getuser/:_id").get(user.getUser)
+router.route("/edit").put(upload.single('file'),user.editUser);
 
 export default router;

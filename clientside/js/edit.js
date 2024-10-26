@@ -16,9 +16,6 @@ async function getUser() {
             <label for="image">Profile Image:</label>
             <input type="file" id="image" name="file" >
 
-            <div class="pro">
-                <img src="http://localhost:3000/api/image/${user.image.filename}" alt="" id="pro">
-            </div>
 
             <label for="phone">Phone:</label>
             <input type="tel" id="phone" name="phone" value=${user.phone}>
@@ -27,3 +24,20 @@ async function getUser() {
     `;
 }
 getUser();
+document.getElementById("frm").addEventListener("submit",(e)=>{
+    e.preventDefault();
+    console.log(document.getElementById("file"));
+    const data=new FormData(e.target);
+    
+    // fetch("http://localhost:3000/api/edit",{
+    //     method:"PUT",
+    //     body:data
+    // }).then(async(res)=>{
+    //     const result=await res.json()
+    //     alert(result.msg)
+    //     window.location.href="../index.html"
+    // }).catch((error)=>{
+    //     console.log(error);
+    // })
+    
+})
