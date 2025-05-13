@@ -5,8 +5,8 @@ import path from "path"
 const storage=multer.diskStorage({
     destination:"./uploads",
     filename:function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        cb(null, uniqueSuffix  + '-' +file.originalname )
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E6)
+        cb(null, path.parse(file.originalname).name + '-' +uniqueSuffix+path.extname(file.originalname) )
       }
 })
 

@@ -5,13 +5,10 @@ import {dirname,join} from "path"
 
 export async function addUser(req, res) {
     try {
-        const image = req.file;
-        console.log(req.file);
+        const imagename = req.file.filename;
         const { email, username, phone } = req.body;
-        console.log(email, username, phone);
-
         // Create the user and send a response only after it's done
-        await userSchema.create({ email, username, phone, image });
+        await userSchema.create({ email, username, phone, imagename });
         res.status(201).send({ msg: "success" });
         
     } catch (error) {

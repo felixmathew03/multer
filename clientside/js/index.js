@@ -6,7 +6,7 @@ async function getUsers() {
         str+=`
         <div class="card">
             <div class="image">
-                <img src="http://localhost:3000/api/image/${user.image.filename}" alt="">
+                <img src="http://localhost:3000/api/image/${user.imagename}" alt="">
             </div>
             <h1>${user.username}</h1>
             <p>${user.email}</p>
