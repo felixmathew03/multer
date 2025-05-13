@@ -39,14 +39,14 @@
 }
 
 .cards{
+    margin: auto;
     margin-top: 1%;
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-wrap: wrap;
 }
 .card{
     margin: 2%;
-    /* height: 17rem; */
     width: 14rem;
     padding: 1%;
     border-radius: 8px;
@@ -55,7 +55,6 @@
 }
 .card:hover{
     transform: scale(1.05);
-
 }
 .image{
     width: 100%;

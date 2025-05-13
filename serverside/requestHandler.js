@@ -33,11 +33,8 @@ export async function deleteUser(req,res) {
         return res.status(500).send({msg:"user not available"});
     //get current file directory
     const __filename=fileURLToPath(import.meta.url)
-    console.log(__filename);
     const __dirname=dirname(__filename);
-    console.log(__dirname);
-    const fullpath=join(__dirname,"/uploads/",user.image.filename)
-    console.log(fullpath);
+    const fullpath=join(__dirname,"/uploads/",user.imagename)
     await fs.unlink(fullpath);
     await userSchema.deleteOne({_id}).then(()=>{
         res.status(200).send({msg:"deleted"})

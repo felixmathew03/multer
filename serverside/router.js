@@ -2,6 +2,7 @@ import { Router } from "express";
 import * as user from "./requestHandler.js";
 import multer from "multer";
 import path from "path"
+const router=Router();
 const storage=multer.diskStorage({
     destination:"./uploads",
     filename:function (req, file, cb) {
@@ -10,8 +11,17 @@ const storage=multer.diskStorage({
       }
 })
 
-const upload =multer({storage});
-const router=Router();
+const fileFilter=(req,file,cb)=>{
+    if(file.mimetype.startsWith('image/')){
+        cb(null,true)
+    }else{
+        cb(new Error("Only images are allowed"),false)
+    }
+};
+const upload =multer({
+    storage:storage,
+    fileFilter:fileFilter
+});
 
 router.route("/upload").post(upload.single('file'),user.addUser);
 router.route("/getusers").get(user.getUsers);
